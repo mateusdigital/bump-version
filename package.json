@@ -1,0 +1,28 @@
+{
+ "name": "bump-version",
+ "version": "1.2.0",
+ "build": 1,
+ "description": "A simple version bumper",
+ "bin": {
+  "bump-version": "source/main.js"
+ },
+ "pkg": {
+  "targets": [
+   "node18-win-x64"
+  ]
+ },
+ "scripts": {
+  "dev": "nodemon source/main.js",
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "build": "node source/main.js --build && pkg . --out-path dist"
+ },
+ "author": "mateusdigital <hello@mateus.digital>",
+ "license": "ISC",
+ "dependencies": {
+  "nodemon": "^3.1.9",
+  "yargs": "^17.7.2"
+ },
+ "devDependencies": {
+  "pkg": "^5.8.1"
+ }
+}
