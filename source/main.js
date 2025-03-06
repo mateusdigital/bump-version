@@ -28,9 +28,13 @@ const yargs       = require('yargs');
 const packageJson = require('../package.json');
 
 // -----------------------------------------------------------------------------
+let cl = console.log;
+
+// -----------------------------------------------------------------------------
 const argv = yargs //
                .version(false)
                .help(false)
+               //
                .option('help', {
                  alias : 'h',
                  type : 'boolean',
@@ -39,7 +43,17 @@ const argv = yargs //
                  alias : 'v',
                  type : 'boolean',
                })
-
+               .option('verbose', {
+                 type : 'boolean',
+               })
+               //
+               .option('show-version', {
+                 type : 'boolean',
+               })
+               .option('show-version-full', {
+                 type : 'boolean',
+               })
+               //
                .option('major', {
                  type : 'number',
                })
@@ -49,6 +63,7 @@ const argv = yargs //
                .option('patch', {
                  type : 'number',
                })
+               //
                .option('build', {
                  type : 'number',
                })
@@ -56,17 +71,20 @@ const argv = yargs //
 
 // -----------------------------------------------------------------------------
 if (argv.help) {
-  const cl   = console.log;
   const name = path.basename(packageJson.name);
 
   cl("Usage:");
   cl(`  ${name} -h | -v`);
   cl(`  ${name} --major | --minor | --patch | --build [value]`);
+  cl(`  ${name} --show-version | --show-version-full`);
   cl(`  ${name} [path]`);
   cl(``);
   cl(`Options:`);
   cl(`  *-h --help     : Show this screen.`);
   cl(`  *-v --version  : Show app version and copyright.`);
+  cl(``);
+  cl(`  --show-version:      Show current version - major.minor.patch`);
+  cl(`  --show-version-full: Show full version    - major.minor.patch.build`);
   cl(``);
   cl(`  --major [value]: Increment or set major version number.`);
   cl(`  --minor [value]: Increment or set minor version number.`);
@@ -111,22 +129,26 @@ if (fs.statSync(filepath).isDirectory()) {
   filepath = path.join(filename, "package.json");
 }
 
-console.log(`Reading file: ${filepath}`);
+if (!argv.verbose) {
+  cl = () => {};
+}
+
+cl(`Reading file: ${filepath}`);
 const contents = fs.readFileSync(filepath);
 const json     = JSON.parse(contents);
 const version  = json.version || '0.0.0';
 const build    = json.build || 0;
 
 // -----------------------------------------------------------------------------
-console.log(`Current version: ${version}`);
-console.log(`Current build: ${build}`);
+cl(`Current version: ${version}`);
+cl(`Current build: ${build}`);
 let version_parts = version.split('.');
 let version_build = build;
 
 // -----------------------------------------------------------------------------
 function _HasKey(obj, targetKey)
 {
-  for (let key of Object.keys(argv)) {
+  for (let key of Object.keys(obj)) {
     if (key != targetKey) {
       continue;
     }
@@ -172,8 +194,16 @@ json.version = version_parts.join('.');
 json.build   = version_build;
 
 // -----------------------------------------------------------------------------
-console.log(`New version: ${json.version}`);
-console.log(`New build: ${json.build}`);
+cl(`New version: ${json.version}`);
+cl(`New build: ${json.build}`);
 
 const str = JSON.stringify(json, null, " ");
 fs.writeFileSync(filepath, str);
+
+// -----------------------------------------------------------------------------
+if (argv["show-version-full"]) {
+  console.log(`${json.version}.${json.build}`);
+  return;
+}
+
+console.log(json.version);
