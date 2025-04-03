@@ -3,21 +3,20 @@
  "version": "1.3.0",
  "build": 2,
  "description": "A simple version bumper",
+ "author": "mateusdigital <hello@mateus.digital>",
+ "license": "GPL-3.0",
  "bin": {
-  "bump-version": "source/main.js"
+  "bump-version": "./source/main.js"
  },
- "pkg": {
-  "targets": [
-   "node18-win-x64"
-  ]
- },
+ "files": [
+  "source/",
+  "package.json",
+  "README.md"
+ ],
  "scripts": {
   "dev": "nodemon source/main.js",
-  "test": "echo \"Error: no test specified\" && exit 1",
   "build": "node source/main.js --build && pkg . --out-path dist"
  },
- "author": "mateusdigital <hello@mateus.digital>",
- "license": "ISC",
  "dependencies": {
   "nodemon": "^3.1.9",
   "yargs": "^17.7.2"
