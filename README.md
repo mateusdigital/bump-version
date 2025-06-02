@@ -1,68 +1,85 @@
 # bump-version
 
-A simple version bumper tool.
+**Made with <3 by [mateus.digital](https://mateus.digital)**
 
-**Made with <3 by [mateus.digital](https://mateus.digital).**
 
-## Description:
-
+<!-- ----------------------------------------------------------------------- -->
 <p align="center">
-    <img style="border-radius: 10px;" src="./resources/readme_game.gif"/>
+    <a href="https://mateus.digital/bump-version">
+        <img style="border-radius: 10px;" src="./_project-resources/readme.gif"/>
+    </a>
 </p>
 
-```bump-version``` is a small utility that mimics the "npm version".
+<!-- Badges -->
+[![Latest release](https://img.shields.io/github/v/tag/mateusdigital/bump-version?label=Latest%20release&style=for-the-badge)](https://github.com/mateusdigital/doom-version/releases)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/mateusdigital/new-website?style=for-the-badge)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/t/mateusdigital/bump-version?style=for-the-badge)](https://github.com/mateusdigital/doom-version/commits)
+[![Stars](https://img.shields.io/github/stars/mateusdigital/bump-version?style=for-the-badge)](https://github.com/mateusdigital/doom-version/stargazers)
+![GitHub License](https://img.shields.io/github/license/mateusdigital/bump-version?style=for-the-badge)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fmateus.digital/bump-version%2Findex.html&style=for-the-badge&logo=web)](https://mateus.digital/doom-version)
 
-<br>
 
-Unlike _"npm version"_, ```bump-version``` has the possibility of working 
-with ```build``` numbers alongside the usual ```major```, ```minor``` and ```patch```.  
 
-Also ```bump-version``` can operate in *any* _json file_, not only in the _"package.json"_.
-
-<br>
+<!-- ----------------------------------------------------------------------- -->
+## Description:
 
 As usual, you are **very welcomed** to **share** and **hack** it.
 
+<!-- Share -->
 
-## Usage
-```
-Usage:
-  bump-version -h | -v
-  bump-version --major | --minor | --patch | --build [value]
-  bump-version [path]
+[![Share](https://img.shields.io/badge/share-000000?logo=x&logoColor=white)](https://x.com/intent/tweet?text=Check%20out%20this%20project%20on%20GitHub:%20https://github.com/mateusdigital/bump-version%20%23doom%20%23pixelart%20%23gamedev)
+[![Share](https://img.shields.io/badge/share-1877F2?logo=facebook&logoColor=white)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/mateusdigital/bump-version)
+[![Share](https://img.shields.io/badge/share-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/mateusdigital/bump-version)
+[![Share](https://img.shields.io/badge/share-FF4500?logo=reddit&logoColor=white)](https://www.reddit.com/submit?title=Check%20out%20this%20project%20on%20GitHub:%20https://github.com/mateusdigital/bump-version)
+[![Share](https://img.shields.io/badge/share-0088CC?logo=telegram&logoColor=white)](https://t.me/share/url?url=https://github.com/mateusdigital/bump-version&text=Check%20out%20this%20project%20on%20GitHub)
+[![Star](https://img.shields.io/badge/⭐%20Give%20a%20Star-000000?logo=github&logoColor=white)](https://github.com/mateusdigital/bump-version/stargazers)
 
-Options:
-  *-h --help     : Show this screen.
-  *-v --version  : Show app version and copyright.
 
-  --major [value]: Increment or set major version number.
-  --minor [value]: Increment or set minor version number.
-  --patch [value]: Increment or set patch version number.
-  --build [value]: Increment or set patch version number.
+<!-- ----------------------------------------------------------------------- -->
+## Dependencies:
+- [pwsh](https://github.com/PowerShell/PowerShell) - build scripts (optional)
+- [nodejs](https://nodejs.org/en) - for development (optional)
 
-Notes:
-  If [path] is blank the current ./package.json is assumed.
-  If [path] is directory the current [path]/package.json is assumed.
 
-  Options marked with * are exclusive, i.e. the bump-version will run that
-  and exit after the operation.
-```
 
-## Install 
+<!-- ----------------------------------------------------------------------- -->
+## Building:
 
-```powershell
+
+```pwsh
 git clone https://github.com/mateusdigital/bump-version
 cd bump-version
+./build-clean.ps1             ##  Cleans temporary directories (_build, _dist, _out) to reset the project state.
+./build-demo.ps1              ##  Builds the web demo, updates version info, and prepares files.
+./build-project-web-page.ps1  ##  Copies the web release build to the ./_out directory for deployment.
+./generate-release-zip.ps1    ##  Packages builds into versioned ZIP archives in ./_dist.
+./deploy-project-web-page.sh  ##  Deploys the web page to a remote server using rsync.
 
-npm install   ## Install npm dependencies.
-npm run build ## Build the project
-```
+## All above are available as targets for npm run ...
+``# [2.0.0](https://github.com/mateusdigital/bump-version/compare/1.2.0...2.0.0) (2025-05-09)
 
+
+### Features
+
+* Accepts --show-* to just display parts of version. ([95c1717](https://github.com/mateusdigital/bump-version/commit/95c1717e5da802259cc50d88ba906e1fc7f92717))`
+
+<!-- ----------------------------------------------------------------------- -->
+## Running:
+Just open the ```index.html```
+
+<!-- ----------------------------------------------------------------------- -->
+## Thanks to:
+
+- [Fabian Sanglard](https://fabiensanglard.net/about/index.html).
+
+
+<!-- ----------------------------------------------------------------------- -->
 ## License:
 
 This software is released under [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 
+<!-- ----------------------------------------------------------------------- -->
 ## Others:
 
 - Email: hello@mateus.digital

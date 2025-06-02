@@ -1,9 +1,0 @@
-# [2.0.0](https://github.com/mateusdigital/bump-version/compare/1.2.0...2.0.0) (2025-05-09)
-
-
-### Features
-
-* Accepts --show-* to just display parts of version. ([95c1717](https://github.com/mateusdigital/bump-version/commit/95c1717e5da802259cc50d88ba906e1fc7f92717))
-
-
-
